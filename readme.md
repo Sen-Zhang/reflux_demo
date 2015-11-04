@@ -18,7 +18,3 @@ This project comes with a gulp task to runs a [`connect`](https://github.com/ave
 ```
 gulp
 ```
-
-## Credit
-
-This Demo application was created by [Sen Zhang](https://github.com/Sen-Zhang/reflux_demo).

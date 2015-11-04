@@ -7,12 +7,20 @@
     "prepublish": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sen-Zhang/reflux_demo.git"
+  },
+  "author": "Sen Zhang",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-connect": "^2.2.0",
     "gulp-open": "^1.0.0",
     "gulp-watch": "^4.3.5"
+  },
+  "dependencies": {
+    "react": "^0.14.2",
+    "reflux": "^0.3.0"
   }
 }
