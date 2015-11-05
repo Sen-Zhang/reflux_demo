@@ -1,0 +1,12 @@
+.text-line-through {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.nav>li>a {
+  padding: 3px 5px;
+}
+
+.font-bolder {
+  font-weight: bolder;
+}

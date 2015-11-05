@@ -42,7 +42,7 @@
       var itemLeft       = this.itemLeft(),
           itemCompleted  = this.props.list.length - itemLeft,
           label          = itemLeft === 1 ? 'item left' : 'items left',
-          clearCompleted = itemCompleted > 0 ? <button className='btn btn-danger btn-xs' onClick={this.clearCompleted}>Clear completed ({itemCompleted})</button> : '';
+          clearCompleted = <button className='btn btn-danger btn-xs' onClick={this.clearCompleted}>Clear completed ({itemCompleted})</button>;
 
       return (
         <footer>
@@ -53,18 +53,18 @@
             <div className='col-sm-6 text-center'>
               <ul className="nav nav-pills">
                 <li>
-                  <ReactRouter.Link activeClassName="text-success" to="All">All</ReactRouter.Link>
+                  <ReactRouter.Link activeClassName="text-success font-bolder" to="All">All</ReactRouter.Link>
                 </li>
                 <li>
-                  <ReactRouter.Link activeClassName="text-success" to="Active">Active</ReactRouter.Link>
+                  <ReactRouter.Link activeClassName="text-success font-bolder" to="Active">Active</ReactRouter.Link>
                 </li>
                 <li>
-                  <ReactRouter.Link activeClassName="text-success" to="Completed">Completed</ReactRouter.Link>
+                  <ReactRouter.Link activeClassName="text-success font-bolder" to="Completed">Completed</ReactRouter.Link>
                 </li>
               </ul>
             </div>
             <div className='col-sm-3'>
-              {clearCompleted}
+              {itemCompleted > 0 ? clearCompleted : ''}
             </div>
           </div>
         </footer>
@@ -77,8 +77,27 @@
       todoItem: React.PropTypes.object
     },
 
+    getInitialState: function () {
+      return {edit: false}
+    },
+
+    editItem: function () {
+      this.setState({edit: true});
+    },
+
     handleToggle: function () {
       TodoActions.toggleItem(this.props.todoItem.id);
+    },
+
+    updateItem: function (e) {
+      if (e.which === 13) {
+        var text = e.target.value;
+
+        if (text) {
+          TodoActions.updateItem(this.props.todoItem.id, text);
+          this.setState({edit: false});
+        }
+      }
     },
 
     removeItem: function () {
@@ -86,13 +105,15 @@
     },
 
     render: function () {
-      var todoItem  = this.props.todoItem,
-          textClass = todoItem.isCompleted ? 'text-line-through' : 'text-info';
+      var todoItem     = this.props.todoItem,
+          textClass    = todoItem.isCompleted ? 'text-line-through' : 'text-info',
+          textShowCell = <strong className={textClass} onDoubleClick={this.editItem}>{todoItem.text}</strong>,
+          textEditCell = <input className='form-control' onKeyUp={this.updateItem} defaultValue={todoItem.text}/>;
 
       return (
         <tr>
           <td><input type='checkbox' checked={todoItem.isCompleted} onChange={this.handleToggle}/></td>
-          <td><strong className={textClass}>{todoItem.text}</strong></td>
+          <td>{ this.state.edit ? textEditCell : textShowCell }</td>
           <td><i className='glyphicon glyphicon-remove text-danger' onClick={this.removeItem}></i></td>
         </tr>
       );

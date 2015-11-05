@@ -11,7 +11,7 @@
     'addItem',
     'removeItem',
     'clearCompleted',
-    'editItem'
+    'updateItem'
   ]);
 
 })(window.Reflux, window);

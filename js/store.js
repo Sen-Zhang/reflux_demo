@@ -39,6 +39,15 @@
       this.updateList(this.list);
     },
 
+    onUpdateItem: function (itemId, newText) {
+      var item = getItemById(this.list, itemId);
+
+      if (item) {
+        item.text = newText;
+        this.updateList(this.list);
+      }
+    },
+
     onRemoveItem: function (itemId) {
       var list = this.list.filter(function (item) {
         return item.id !== itemId;
