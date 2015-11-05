@@ -10,11 +10,5 @@
 Install dependencies with bower and npm. You'll first need to have [bower](http://bower.io/) and [npm](npmjs.org) installed to do so. Then run the following:
 
 ```
-bower install && npm install
-```
-
-This project comes with a gulp task to runs a [`connect`](https://github.com/avevlad/gulp-connect) web server and opens up the web browser for you. Just run:
-
-```
-gulp
+npm start
 ```
